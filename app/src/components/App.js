@@ -1,7 +1,7 @@
 /**
  * Reference: https://kyleshevlin.com/tic-tac-toe
  */
-import Board from "./Board";
+import Game from "./Game";
 
 function App() {
     const gameSettings = {
@@ -19,11 +19,7 @@ function App() {
 
     return (
         <div className="App" style={appStyle}>
-            <Board
-                rows={gameSettings.boardSize}
-                columns={gameSettings.boardSize}
-                players={gameSettings.players}
-            />
+            <Game gameSettings={gameSettings} />
         </div>
     );
 }
