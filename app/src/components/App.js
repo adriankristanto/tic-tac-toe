@@ -4,6 +4,11 @@
 import Board from "./Board";
 
 function App() {
+    const gameSettings = {
+        boardSize: 3,
+        players: ["X", "O"],
+    };
+
     const appStyle = {
         width: "100vw",
         height: "100vh",
@@ -14,7 +19,11 @@ function App() {
 
     return (
         <div className="App" style={appStyle}>
-            <Board rows={3} columns={3} />
+            <Board
+                rows={gameSettings.boardSize}
+                columns={gameSettings.boardSize}
+                players={gameSettings.players}
+            />
         </div>
     );
 }

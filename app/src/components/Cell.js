@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Cell({ cell }) {
+export default function Cell({ cell, handleClick }) {
     const cellStyle = {
         backgroundColor: "white",
         width: 75,
@@ -8,7 +8,7 @@ export default function Cell({ cell }) {
     };
 
     return (
-        <div className="cell" style={cellStyle}>
+        <div className="cell" style={cellStyle} onClick={handleClick}>
             {cell}
         </div>
     );
