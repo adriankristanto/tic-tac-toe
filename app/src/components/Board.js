@@ -56,6 +56,7 @@ export default function Board({ rows, columns, players }) {
                             key={`${rowIndex}-${cellIndex}`}
                             cell={cell}
                             handleClick={handleClick(rowIndex, cellIndex)}
+                            players={players}
                         />
                     ))
                 )}

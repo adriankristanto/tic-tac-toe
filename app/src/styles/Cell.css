@@ -1,0 +1,17 @@
+.X path {
+    stroke-dasharray: 330.9273986816406;
+    stroke-dashoffset: 330.9273986816406;
+    animation: dash 0.25s linear forwards;
+}
+
+.O circle {
+    stroke-dasharray: 671.6303100585938;
+    stroke-dashoffset: 671.6303100585938;
+    animation: dash 0.25s linear forwards;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
