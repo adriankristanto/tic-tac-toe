@@ -109,9 +109,21 @@ const checkForDraw = (boardState) => {
     return emptySpaceLeft.length === 0;
 };
 
+/**
+ * currently available settings in the game
+ *
+ * boardSize: total number of cells in both rows and columns, the board size will be boardSize * boardSize
+ * players: player symbols currently available
+ */
+const defaultGameSettings = {
+    boardSize: 3,
+    players: ["X", "O"],
+};
+
 export {
     generateBoardState,
     generateInitialBoardState,
     checkForDraw,
     checkForWinner,
+    defaultGameSettings,
 };

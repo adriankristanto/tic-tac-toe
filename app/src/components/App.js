@@ -1,25 +1,26 @@
 /**
  * Reference: https://kyleshevlin.com/tic-tac-toe
  */
-import React from "react";
+import React, { useState } from "react";
+import { defaultGameSettings } from "../utils/game";
 import Game from "./Game";
+import NavigationBar from "./NavigationBar";
 
 function App() {
-    const gameSettings = {
-        boardSize: 3,
-        players: ["X", "O"],
-    };
+    const [gameSettings, setGameSettings] = useState(defaultGameSettings);
 
-    const appStyle = {
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+    const handleGameSettingsChange = (newGameSettings) => {
+        setGameSettings((prevGameSettings) => {
+            return {
+                ...prevGameSettings,
+                ...newGameSettings,
+            };
+        });
     };
 
     return (
-        <div className="App" style={appStyle}>
+        <div className="App">
+            <NavigationBar onGameSettingsChange={handleGameSettingsChange} />
             <Game gameSettings={gameSettings} />
         </div>
     );

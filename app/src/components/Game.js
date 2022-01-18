@@ -24,6 +24,17 @@ export default function Game({ gameSettings }) {
     const [turn, setTurn] = useState(0);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalMessage, setModalMessage] = useState("");
+    const gameStyle = {
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    };
+
+    useEffect(() => {
+        setBoardState(generateInitialBoardState(gameSettings.boardSize));
+    }, [gameSettings]);
 
     useEffect(() => {
         const isDraw = checkForDraw(boardState);
@@ -79,7 +90,7 @@ export default function Game({ gameSettings }) {
     };
 
     return (
-        <div>
+        <div style={gameStyle}>
             <Board
                 players={gameSettings.players}
                 handleClick={handleClick}
