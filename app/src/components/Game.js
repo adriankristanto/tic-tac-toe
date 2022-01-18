@@ -12,17 +12,22 @@ import {
  * runs checks on whether the game has completed, etc.
  *
  * @param {*} gameSettings an object containing boardSize and players settings
+ * @param {*} onGameOver a callback that is called when the game ends, either because of a draw or there is a winner
+ *                       it needs to accept the game over state, containing isDraw boolean and winner player symbol
  */
-export default function Game({ gameSettings }) {
+export default function Game({ gameSettings, onGameOver }) {
     const [boardState, setBoardState] = useState(
         generateInitialBoardState(gameSettings.boardSize)
     );
     const [turn, setTurn] = useState(0);
 
     useEffect(() => {
-        console.log(checkForDraw(boardState));
-        console.log(checkForWinner(boardState));
-    }, [boardState]);
+        const isDraw = checkForDraw(boardState);
+        const winner = checkForWinner(boardState);
+        if (isDraw || winner) {
+            onGameOver({ isDraw, winner });
+        }
+    }, [boardState, onGameOver]);
 
     const handleClick = (x, y) => () => {
         // Reference: https://dev.to/samanthaming/how-to-deep-clone-an-array-in-javascript-3cig
