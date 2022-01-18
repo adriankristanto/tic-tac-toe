@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Board from "./Board";
-import { generateBoardState } from "../utils/game";
+import {
+    generateInitialBoardState,
+    checkForDraw,
+    checkForWinner,
+} from "../utils/game";
 
 /**
  * component responsible for managing the game state,
@@ -11,13 +15,15 @@ import { generateBoardState } from "../utils/game";
  */
 export default function Game({ gameSettings }) {
     const [boardState, setBoardState] = useState(
-        generateBoardState(
-            gameSettings.boardSize,
-            gameSettings.boardSize,
-            () => null
-        )
+        generateInitialBoardState(gameSettings.boardSize)
     );
     const [turn, setTurn] = useState(0);
+
+    useEffect(() => {
+        console.log(checkForDraw(boardState));
+        console.log(checkForWinner(boardState));
+    }, [boardState]);
+
     const handleClick = (x, y) => () => {
         // Reference: https://dev.to/samanthaming/how-to-deep-clone-an-array-in-javascript-3cig
         const deepClonedBoardState = JSON.parse(JSON.stringify(boardState));
@@ -31,6 +37,7 @@ export default function Game({ gameSettings }) {
             });
         }
     };
+
     return (
         <div>
             <Board
